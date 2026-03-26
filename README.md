@@ -6,9 +6,10 @@ An end-to-end, automated housing analytics system designed to monitor affordabil
 
 This project integrates real-time housing listings with affordability metrics and geospatial analysis to create a continuously updating decision-support tool. By transforming live market data into interpretable indicators of housing cost burden, the system enables policymakers, nonprofits, and community stakeholders to better understand where housing pressures are most acute and where intervention may be needed.
 
-<div style="text-align: center;">  
+---
+<p align="center">
   <img src="housing-main-ui.png" alt="ALT_TEXT">  
-</div>  
+</p>  
 
 ---
 
@@ -32,9 +33,9 @@ The result is a system that supports **continuous monitoring of affordability co
 
 ### Data Pipeline
 
-<div style="text-align: center;">  
-  <img src="housing-system-architecture.png" alt="ALT_TEXT">  
-</div>  
+<p align="center">
+  <img src="housing-system-architecture.png" alt="ALT_TEXT"  width="800" height="300">  
+</p>
 
 ### Core Components
 
@@ -132,9 +133,15 @@ Potential applications include:
 
 The tool is designed to bridge the gap between **raw housing data and actionable policy insight**.
 
-<div style="text-align: center;">  
-  <img src="housing-sample-usage.png" alt="ALT_TEXT">  
-</div>  
+### Sample Insight: 
+
+<p align="center">
+  <img src="housing-sample-usage.png" alt="Alt Text" width="450" height="700">
+</p>
+
+<p align="center">
+  Buffalo’s West Side residents (zipcodes 14201, 14213, 14222) are facing high cost burdens and displacement pressures, with only 7% of listed properties affordable to the neighborhood’s median household. Many are at risk of being priced out and relocating to more affordable adjacent neighborhoods such as North Buffalo, where median house prices are $130k lower.
+</p>
 
 ---
 
