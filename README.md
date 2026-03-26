@@ -1,119 +1,181 @@
-# real-estate-trends
+# Housing Affordability & Displacement Risk Monitoring System
 
-WRITE-UP REMINDER:
+## Summary
 
+An end-to-end, automated housing analytics system designed to monitor affordability and identify emerging displacement risk at the neighborhood level. 
 
-    policy write-up for real-estate:
-    keep in mind, this is median income, so this means half of the people in this zip code literally cannot afford these homes.
-    
-    Pivot this:
-    % of residents who could afford these houses ->
-    
-    Show with a chart, a narrative, and a map that people are likely going to be priced out of their neighborhoods. 
-    
-    Affordable housing is generally defined as housing where the gross housing costs (including utilities, taxes, and insurance for homeowners, or contract rent plus utilities for renters) do not exceed 30% of a household's gross income. This threshold is established by organizations like the U.S. Department of Housing and Urban Development (HUD) and is a key factor in determining eligibility for various housing assistance programs. 
-    
-    When housing costs outpace income in a ZIP code, it typically means the area is unaffordable for the average resident. This can drive housing insecurity, gentrification, and economic displacement, and may signal the need for policy intervention, such as affordable housing development, rent controls, or income supports.
+This project integrates real-time housing listings with affordability metrics and geospatial analysis to create a continuously updating decision-support tool. By transforming live market data into interpretable indicators of housing cost burden, the system enables policymakers, nonprofits, and community stakeholders to better understand where housing pressures are most acute and where intervention may be needed.
 
+<div style="text-align: center;">  
+  <img src="housing-main-ui.png" alt="ALT_TEXT">  
+</div>  
 
-🏡 Project Title:
+---
 
-    "Neighborhood Snapshot: Real Estate Trends in [Your City]"
-    A data scraping + mapping dashboard for housing insights
+## Problem Statement
 
+City governments, housing advocates, and community organizations often lack timely, granular data on housing affordability. While public datasets (e.g. Census/ACS) provide valuable insights, they are typically lagged and do not capture rapidly changing market conditions.
 
-✅ Project Goal:
+At the same time, housing affordability is a primary driver of displacement risk, yet it is often analyzed using static or aggregated indicators that obscure neighborhood-level dynamics.
 
-    Practice web scraping, data enrichment, visualization, and dashboarding
-    Show potential clients how you turn public data into market-ready insights
+This project addresses that gap by building an automated pipeline that:
 
+- Collects real-time housing market data  
+- Translates listing-level data into affordability metrics  
+- Visualizes afforability burden on a neighborhood level
 
-⏱️ Timeline: 1–2 Days
+The result is a system that supports **continuous monitoring of affordability conditions**, enabling more responsive and targeted policy and planning decisions.
 
-    Day 1 (Core):
+---
 
-        Scrape property listings (10–50 items)
-        Enrich with census data by ZIP
-        Visualize on map + bar charts
+## System Overview
 
-    Day 2 (Optional Upgrades):
+### Data Pipeline
 
-        Add filtering (Streamlit dashboard)
-        Calculate price/sqft trends
-        Add simple predictive model or time series trendline
+<div style="text-align: center;">  
+  <img src="housing-system-architecture.png" alt="ALT_TEXT">  
+</div>  
 
+### Core Components
 
-🔧 Step-by-Step Plan
+- **Automated Scraper**  
+  Collects real-time housing listings using Selenium.
 
-    🧩 Step 1: Scrape Property Listings (2–3 hrs)
-        
-        Pick 1 public site (some allow scraping):
+- **Affordability Metrics Engine**  
+  Computes key indicators such as:
+  - Price-to-Income Ratio
+  - Pricing Affordability Gap
 
-            Zillow (caution: hard to scrape)
-            ✅ Realtor.com – HTML content, no login required
-            ✅ Redfin – scrape via search URL (e.g. https://www.redfin.com/city/30749/CA/San-Francisco)
-            Craigslist Housing – great alternative!
+- **Geospatial Enrichment**  
+  Converts addresses into coordinates and enables spatial aggregation and mapping.
 
-        Fields to extract:
+- **Cloud Data Layer**  
+  Airtable serves as a lightweight, flexible backend for storing and updating processed data.
 
-            Price
-            Address or ZIP
-            Bedrooms
-            Bathrooms
-            Sqft
-            Listing Date
-            URL
-            Description (optional, for NLP/sentiment)
+- **Interactive Dashboard**  
+  Streamlit application visualizing:
+  - Zip code-level affordability (choropleth)
+  - Property-level listings (map markers)
+  - Dynamic filtering and exploration tools  
 
-        Tools: requests, BeautifulSoup, pandas
-        (Use Selenium or Playwright if site loads dynamically)
+---
 
-    📍 Step 2: Enrich with Public Data (1–2 hrs)
-    
-        Use Census API or public ZIP-to-income datasets:
+## Methods
 
-            Census API: B19013: median household income by ZIP
-            Or use static ZIP income CSV like from https://www.incomebyzipcode.com/
+### Feature Engineering
 
-        Merge scraped data with:
+Listing-level data is transformed into policy-relevant indicators, including:
 
-            Median income
-            Median home value (optional)
+- Affordability ratios relative to income  
+- Price per square foot  
 
-        Optional:
+Zip code-level aggregates are computed to support neighborhood-level analysis.
 
-            Use Zillow Research CSVs for region-wide trends → https://www.zillow.com/research/data/
+---
 
-    📊 Step 3: Visualize (2 hrs)
+### Affordability Metrics
 
-        Use plotly, seaborn, or folium.
+Metrics are used to capture different dimensions of housing accessibility:
 
-        Suggested Visuals:
+- **Price-to-Income Ratio**  
+  Evaluates long-term affordability of homeownership.
 
-            Heatmap: Average home price by ZIP code (use folium choropleth)
-            Bar Chart: Price per sqft by neighborhood or ZIP
-            Scatter Plot: Sqft vs Price
-            Line chart: Number of listings by date (if you scrape across time)
+- **Affordability Gap**  
+  Highlights difference between affordable home prices and actual property listing prices.
 
-    🖥️ Step 4 (Optional): Build a Streamlit App (2 hrs)
+These metrics allow for both **household-level and neighborhood-level analysis**.
 
-        Dropdown to filter by ZIP or price
-        Histogram of price distribution
-        Map of properties with tooltips
-        streamlit run app.py
+---
 
+### Geospatial Analysis
 
-🎁 Final Deliverable
+- Address-level geocoding via OpenStreetMap  
+- Aggregation at the zip code level  
+- Choropleth mapping of affordability indicators  
+- Overlay of property-level data for micro-to-macro comparison  
 
-    📊 real_estate_scraper.ipynb: does the scraping + visualization
-    💾 listings.csv: exported cleaned data
-    📍 app.py: interactive dashboard (optional)
-    📄 README.md: brief description + example screenshots
-    📷 Screenshots or Loom for Upwork portfolio
+This enables identification of **spatial patterns in affordability and housing pressure**.
 
+---
 
-🧠 Bonus Upgrade (for Day 2 or Job Proposals)
+## Key Findings
 
-    Add sentiment analysis on property descriptions
-    Build regression model: predict price based on sqft, ZIP, bedrooms
-    Use geopandas to create ZIP-level shapefiles for advanced mapping
+- Housing affordability varies significantly across neighborhoods, even within the same city.  
+- High-cost burden areas tend to cluster spatially, indicating localized affordability pressures.  
+- Listing-level data reveals emerging trends faster than traditional public datasets.  
+- Certain neighborhoods show early signals of potential displacement risk based on rising cost burdens.  
+
+---
+
+## Outputs
+
+Primary artifacts produced:
+
+- Interactive Streamlit dashboard with:
+  - Zip code-level affordability choropleth  
+  - Property-level mapping with tooltips  
+- Processed dataset of housing listings with affordability metrics  
+- Automated pipeline for continuous data updates  
+
+---
+
+## Policy Relevance
+
+This system provides a **transparent, data-driven framework** for understanding housing affordability in near real time.
+
+Potential applications include:
+
+- Identifying neighborhoods at risk of displacement  
+- Supporting zoning and affordable housing policy decisions  
+- Informing nonprofit housing advocacy and grant proposals  
+- Guiding community outreach and resource allocation  
+
+The tool is designed to bridge the gap between **raw housing data and actionable policy insight**.
+
+<div style="text-align: center;">  
+  <img src="housing-sample-usage.png" alt="ALT_TEXT">  
+</div>  
+
+---
+
+## Deployment & Automation
+
+- Dockerized pipeline for reproducibility and portability  
+- GitHub Actions used for:
+  - Scheduled scraping runs  
+  - Manual execution of data updates  
+- Airtable enables lightweight cloud storage and easy integration with dashboards  
+
+---
+
+## Limitations & Future Work
+
+- Current analysis is descriptive; future work will include:
+  - Predictive displacement risk modeling  
+  - Integration with socioeconomic and demographic datasets  
+  - Scenario analysis for policy interventions  
+  - Expansion to multiple cities  
+
+---
+
+## Tech Stack
+
+**Data Processing / Engineering**
+- Python
+- Selenium
+- Requests
+- Pandas
+
+**Geospatial Analysis**
+- OpenStreetMap API
+- Folium / Leaflet
+
+**Storage**
+- Airtable
+
+**Visualization**
+- Streamlit
+
+**Deployment**
+- Docker
+- GitHub Actions
