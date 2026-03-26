@@ -6,7 +6,7 @@ An end-to-end, automated housing analytics system designed to monitor affordabil
 
 This project integrates real-time housing listings with affordability metrics and geospatial analysis to create a continuously updating decision-support tool. By transforming live market data into interpretable indicators of housing cost burden, the system enables policymakers, nonprofits, and community stakeholders to better understand where housing pressures are most acute and where intervention may be needed.
 
----
+##
 <p align="center">
   <img src="housing-main-ui.png" alt="ALT_TEXT">  
 </p>  
