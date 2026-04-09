@@ -241,7 +241,11 @@ map = folium.Map(location=[42.9159281, -78.7487142], zoom_start=11, tiles="Carto
 
 # Create a custom colormap (green → yellow → red)
 colormap = cm.LinearColormap(
-    colors=["green", "yellow", "red"],
+    colors=[
+        "rgba(0, 128, 0, 0.6)",   # green w/ transparency
+        "rgba(255, 255, 0, 0.6)", # yellow
+        "rgba(255, 0, 0, 0.6)"    # red    
+    ],
     vmin=df_zip_analysis["PIR"].min(),
     vmax=8,  # NOTE!! This value is somewhat arbitrary, based on what is an "affordable" PIR from research
     caption="Price to Income Ratio (Affordability Measure)",
@@ -286,7 +290,12 @@ for _, row in df_houses_filtered.iterrows():
             f"<b><i>Affordable Price:</i></b> ${int(row['Affordable_Price']):,}<br>"
             f"<b><i>Affordability Gap:</i></b> ${int(row['Affordability_Gap']):,}"
         ),
-        icon=folium.Icon(color=row["Affordable_Color"], icon="home", prefix="fa"),
+        icon=folium.Icon(color=row["Affordable_Color"],
+                         icon=folium.CustomIcon(
+                             icon_image="home_icon.png",
+                             icon_size=(5,5)
+                         ),
+                         prefix="fa"),
     ).add_to(map)
 
 # show map in streamlit
