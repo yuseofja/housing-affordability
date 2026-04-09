@@ -237,7 +237,7 @@ except:
 # --------- MAP ---------
 
 # create folium map
-map = folium.Map(location=[42.9159281, -78.7487142], zoom_start=11)
+map = folium.Map(location=[42.9159281, -78.7487142], zoom_start=11, tiles="CartoDB positron")
 
 # Create a custom colormap (green → yellow → red)
 colormap = cm.LinearColormap(
