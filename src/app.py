@@ -277,8 +277,14 @@ colormap.add_to(map)
 
 # Add house pins
 for _, row in df_houses_filtered.iterrows():
-    folium.Marker(
+    folium.CircleMarker(
         location=[row["Lat"], row["Lng"]],
+        radius=6,  # size of marker
+        color=row["Affordable_Color"],          # border color
+        fill=True,
+        fill_color=row["Affordable_Color"],     # fill color
+        fill_opacity=0.9,                       # make markers pop
+        weight=1,                               # border thickness
         tooltip=(
             f"<b>{row['Address']}</b><br>"
             f"<div style='line-height:2'></div>"
@@ -286,12 +292,6 @@ for _, row in df_houses_filtered.iterrows():
             f"<b><i>Affordable Price:</i></b> ${int(row['Affordable_Price']):,}<br>"
             f"<b><i>Affordability Gap:</i></b> ${int(row['Affordability_Gap']):,}"
         ),
-        icon=folium.Icon(color=row["Affordable_Color"],
-                         icon=folium.CustomIcon(
-                             icon_image="home",
-                             icon_size=(5,5)
-                         ),
-                         prefix="fa"),
     ).add_to(map)
 
 # show map in streamlit
