@@ -288,7 +288,7 @@ for _, row in df_houses_filtered.iterrows():
         ),
         icon=folium.Icon(color=row["Affordable_Color"],
                          icon=folium.CustomIcon(
-                             icon_image="home_icon.png",
+                             icon_image="home",
                              icon_size=(5,5)
                          ),
                          prefix="fa"),
