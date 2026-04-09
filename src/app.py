@@ -240,11 +240,11 @@ except:
 map = folium.Map(location=[42.9159281, -78.7487142], zoom_start=11, tiles="CartoDB positron")
 
 # Create a custom colormap (green → yellow → red)
-colormap = cm.LinearColormap(
+colormap = cm.StepColormap(
     colors=[
-        "rgba(0, 128, 0, 0.6)",   # green w/ transparency
-        "rgba(255, 255, 0, 0.6)", # yellow
-        "rgba(255, 0, 0, 0.6)"    # red    
+        "rgba(0,128,0,0.6)",
+        "rgba(255,255,0,0.6)",
+        "rgba(255,0,0,0.6)"   
     ],
     vmin=df_zip_analysis["PIR"].min(),
     vmax=8,  # NOTE!! This value is somewhat arbitrary, based on what is an "affordable" PIR from research
